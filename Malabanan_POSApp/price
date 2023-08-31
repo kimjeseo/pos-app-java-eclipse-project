@@ -1,0 +1,118 @@
+package Malabanan_POSApp;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class price_POS {
+  private JFrame PRICE;
+  
+  public static void main(String[] args) {
+    EventQueue.invokeLater(new Runnable() {
+          public void run() {
+            try {
+              price_POS window = new price_POS();
+              window.PRICE.setVisible(true);
+            } catch (Exception e) {
+              e.printStackTrace();
+            } 
+          }
+        });
+  }
+  
+  public price_POS() {
+    initialize();
+  }
+  
+  private void initialize() {
+    this.PRICE = new JFrame();
+    this.PRICE.setTitle("PRICE");
+    this.PRICE.getContentPane().setBackground(new Color(0, 255, 255));
+    this.PRICE.getContentPane().setFont(new Font("Times New Roman", 3, 18));
+    this.PRICE.setBounds(100, 100, 450, 417);
+    this.PRICE.setDefaultCloseOperation(3);
+    this.PRICE.getContentPane().setLayout((LayoutManager)null);
+    JLabel lblNewLabel = new JLabel("RED HORSE : );
+    lblNewLabel.setFont(new Font("Times New Roman", 3, 14));
+    lblNewLabel.setBounds(10, 11, 174, 35);
+    this.PRICE.getContentPane().add(lblNewLabel);
+    JLabel lblGin = new JLabel("GIN : );
+    lblGin.setFont(new Font("Times New Roman", 3, 14));
+    lblGin.setBounds(10, 44, 174, 35);
+    this.PRICE.getContentPane().add(lblGin);
+    JLabel lblCoke = new JLabel("COKE : );
+    lblCoke.setFont(new Font("Times New Roman", 3, 14));
+    lblCoke.setBounds(10, 80, 174, 35);
+    this.PRICE.getContentPane().add(lblCoke);
+    JLabel lblRoyal = new JLabel("ROYAL : 20.00");
+    lblRoyal.setFont(new Font("Times New Roman", 3, 14));
+    lblRoyal.setBounds(10, 116, 174, 35);
+    this.PRICE.getContentPane().add(lblRoyal);
+    JLabel lblMarlboroLights = new JLabel("MARLBORO LIGHTS : );
+    lblMarlboroLights.setFont(new Font("Times New Roman", 3, 14));
+    lblMarlboroLights.setBounds(10, 152, 174, 35);
+    this.PRICE.getContentPane().add(lblMarlboroLights);
+    JLabel lblSisig = new JLabel("SISIG : );
+    lblSisig.setFont(new Font("Times New Roman", 3, 14));
+    lblSisig.setBounds(10, 187, 174, 35);
+    this.PRICE.getContentPane().add(lblSisig);
+    JLabel lblExtraEgg = new JLabel("EXTRA EGG : );
+    lblExtraEgg.setFont(new Font("Times New Roman", 3, 14));
+    lblExtraEgg.setBounds(211, 11, 174, 35);
+    this.PRICE.getContentPane().add(lblExtraEgg);
+    JLabel lblExtraSoup = new JLabel("EXTRA SOUP : );
+    lblExtraSoup.setFont(new Font("Times New Roman", 3, 14));
+    lblExtraSoup.setBounds(211, 44, 174, 35);
+    this.PRICE.getContentPane().add(lblExtraSoup);
+    JLabel lblAdobo = new JLabel("ADOBO : );
+    lblAdobo.setFont(new Font("Times New Roman", 3, 14));
+    lblAdobo.setBounds(10, 227, 174, 35);
+    this.PRICE.getContentPane().add(lblAdobo);
+    JLabel lblSml = new JLabel("SML : );
+    lblSml.setFont(new Font("Times New Roman", 3, 14));
+    lblSml.setBounds(211, 80, 174, 35);
+    this.PRICE.getContentPane().add(lblSml);
+    JLabel lblBlackLabel = new JLabel("Black Label : );
+    lblBlackLabel.setFont(new Font("Times New Roman", 3, 14));
+    lblBlackLabel.setBounds(211, 116, 174, 35);
+    this.PRICE.getContentPane().add(lblBlackLabel);
+    JLabel lblSprite = new JLabel("Sprite : );
+    lblSprite.setFont(new Font("Times New Roman", 3, 14));
+    lblSprite.setBounds(211, 152, 174, 35);
+    this.PRICE.getContentPane().add(lblSprite);
+    JLabel lblMarlboroRed = new JLabel("Marlboro Red : );
+    lblMarlboroRed.setFont(new Font("Times New Roman", 3, 14));
+    lblMarlboroRed.setBounds(211, 187, 174, 35);
+    this.PRICE.getContentPane().add(lblMarlboroRed);
+    JLabel lblMarlboroBlue = new JLabel("Marlboro Blue: );
+    lblMarlboroBlue.setFont(new Font("Times New Roman", 3, 14));
+    lblMarlboroBlue.setBounds(211, 227, 174, 35);
+    this.PRICE.getContentPane().add(lblMarlboroBlue);
+    JLabel lblBurger = new JLabel("BURGER : );
+    lblBurger.setFont(new Font("Times New Roman", 3, 14));
+    lblBurger.setBounds(10, 273, 174, 35);
+    this.PRICE.getContentPane().add(lblBurger);
+    JLabel lblSinigang = new JLabel("Sinigang : );
+    lblSinigang.setFont(new Font("Times New Roman", 3, 14));
+    lblSinigang.setBounds(211, 273, 174, 35);
+    this.PRICE.getContentPane().add(lblSinigang);
+    JLabel lblPorkchop = new JLabel("PorkChop : );
+    lblPorkchop.setFont(new Font("Times New Roman", 3, 14));
+    lblPorkchop.setBounds(10, 319, 174, 35);
+    this.PRICE.getContentPane().add(lblPorkchop);
+    JButton btnNewButton = new JButton("OK");
+    btnNewButton.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            price_POS.this.PRICE.dispose();
+          }
+        });
+    btnNewButton.setBounds(221, 326, 89, 23);
+    this.PRICE.getContentPane().add(btnNewButton);
+  }
+}
