@@ -1,0 +1,958 @@
+package Malabanan_POSApp;
+
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+
+public class sample_POS {
+  String ETAX;
+  
+  String ESUBTOTAL;
+  
+  String ETOTAL;
+  
+  double[] itemcost = new double[22];
+  
+  JFrame frmTambaykainan;
+  
+  private JTextField HOWMANYRH;
+  
+  private JTextField HOWMANYGIN;
+  
+  private JTextField HOWMANYCOKE;
+  
+  private JTextField HOWMANYROYAL;
+  
+  private JTextField HOWMANYYOSIWHITE;
+  
+  private JTextField HOWMANYSISIG;
+  
+  private JTextField HOWMANYADOBO;
+  
+  private JTextField HOWMANYBURGER;
+  
+  private JTextField HOWMANYEXEGG;
+  
+  private JTextField HOWMANYEXSOUP;
+  
+  private JTextField HOWMANYSML;
+  
+  private JTextField HOWMANYBLACKLABEL;
+  
+  private JTextField HOWMANYSPRITE;
+  
+  private JTextField HOWMANYMARLRED;
+  
+  private JTextField HOWMANYMARLBLUE;
+  
+  private JTextField HOWMANYSINIGANG;
+  
+  private JTextField HOWMANYPORKCHOP;
+  
+  private JTextField TAX;
+  
+  private JTextField SUBTOTAL;
+  
+  private JTextField TT;
+  
+  private String NAME;
+  
+  private String ORDERS;
+  
+  static String summery;
+  
+  private JTextField textNAME;
+  
+  public static void main(String[] args) {
+    EventQueue.invokeLater(new Runnable() {
+          public void run() {
+            try {
+              sample_POS window = new sample_POS();
+              window.frmTambaykainan.setVisible(true);
+            } catch (Exception e) {
+              e.printStackTrace();
+            } 
+          }
+        });
+  }
+  
+  public sample_POS() {
+    initialize();
+  }
+  
+  private void initialize() {
+    this.frmTambaykainan = new JFrame();
+    this.frmTambaykainan.addWindowListener(new WindowAdapter() {
+          public void windowActivated(WindowEvent e) {
+            sample_POS.this.HOWMANYRH.setEnabled(false);
+            sample_POS.this.HOWMANYGIN.setEnabled(false);
+            sample_POS.this.HOWMANYCOKE.setEnabled(false);
+            sample_POS.this.HOWMANYROYAL.setEnabled(false);
+            sample_POS.this.HOWMANYYOSIWHITE.setEnabled(false);
+            sample_POS.this.HOWMANYSISIG.setEnabled(false);
+            sample_POS.this.HOWMANYADOBO.setEnabled(false);
+            sample_POS.this.HOWMANYBURGER.setEnabled(false);
+            sample_POS.this.HOWMANYEXEGG.setEnabled(false);
+            sample_POS.this.HOWMANYEXSOUP.setEnabled(false);
+            sample_POS.this.HOWMANYSML.setEnabled(false);
+            sample_POS.this.HOWMANYBLACKLABEL.setEnabled(false);
+            sample_POS.this.HOWMANYSPRITE.setEnabled(false);
+            sample_POS.this.HOWMANYMARLRED.setEnabled(false);
+            sample_POS.this.HOWMANYMARLBLUE.setEnabled(false);
+            sample_POS.this.HOWMANYSINIGANG.setEnabled(false);
+            sample_POS.this.HOWMANYPORKCHOP.setEnabled(false);
+          }
+        });
+    this.frmTambaykainan.setTitle("TAMBAYKAINAN");
+    this.frmTambaykainan.setBounds(0, 0, 1370, 700);
+    this.frmTambaykainan.setDefaultCloseOperation(3);
+    this.frmTambaykainan.getContentPane().setLayout(new GridLayout(1, 3, 3, 3));
+    JPanel panel_1 = new JPanel();
+    panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+    this.frmTambaykainan.getContentPane().add(panel_1);
+    panel_1.setLayout(new GridLayout(1, 4, 1, 1));
+    JPanel p1 = new JPanel();
+    panel_1.add(p1);
+    p1.setLayout((LayoutManager)null);
+    final JCheckBox chkcRH = new JCheckBox("RED HORSE");
+    chkcRH.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcRH.isSelected()) {
+              sample_POS.this.HOWMANYRH.setEnabled(true);
+              sample_POS.this.HOWMANYRH.setText("");
+              sample_POS.this.HOWMANYRH.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYRH.setEnabled(false);
+              sample_POS.this.HOWMANYRH.setText("0");
+            } 
+          }
+        });
+    chkcRH.setEnabled(false);
+    chkcRH.setBounds(6, 25, 97, 23);
+    chkcRH.setFont(new Font("Tahoma", 3, 13));
+    p1.add(chkcRH);
+    final JCheckBox chkcGIN = new JCheckBox("GIN");
+    chkcGIN.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcGIN.isSelected()) {
+              sample_POS.this.HOWMANYGIN.setEnabled(true);
+              sample_POS.this.HOWMANYGIN.setText("");
+              sample_POS.this.HOWMANYGIN.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYGIN.setEnabled(false);
+              sample_POS.this.HOWMANYGIN.setText("0");
+            } 
+          }
+        });
+    chkcGIN.setEnabled(false);
+    chkcGIN.setFont(new Font("Tahoma", 3, 15));
+    chkcGIN.setBounds(6, 79, 97, 23);
+    p1.add(chkcGIN);
+    final JCheckBox chkcCOKE = new JCheckBox("COKE");
+    chkcCOKE.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcCOKE.isSelected()) {
+              sample_POS.this.HOWMANYCOKE.setEnabled(true);
+              sample_POS.this.HOWMANYCOKE.setText("");
+              sample_POS.this.HOWMANYCOKE.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYCOKE.setEnabled(false);
+              sample_POS.this.HOWMANYCOKE.setText("0");
+            } 
+          }
+        });
+    chkcCOKE.setEnabled(false);
+    chkcCOKE.setFont(new Font("Tahoma", 3, 15));
+    chkcCOKE.setBounds(6, 136, 97, 23);
+    p1.add(chkcCOKE);
+    final JCheckBox chkcROYAL = new JCheckBox("ROYAL");
+    chkcROYAL.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcROYAL.isSelected()) {
+              sample_POS.this.HOWMANYROYAL.setEnabled(true);
+              sample_POS.this.HOWMANYROYAL.setText("");
+              sample_POS.this.HOWMANYROYAL.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYROYAL.setEnabled(false);
+              sample_POS.this.HOWMANYROYAL.setText("0");
+            } 
+          }
+        });
+    chkcROYAL.setEnabled(false);
+    chkcROYAL.setFont(new Font("Tahoma", 3, 15));
+    chkcROYAL.setBounds(6, 188, 97, 23);
+    p1.add(chkcROYAL);
+    final JCheckBox chkcYOSIWHITE = new JCheckBox("Marl Lights");
+    chkcYOSIWHITE.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcYOSIWHITE.isSelected()) {
+              sample_POS.this.HOWMANYYOSIWHITE.setEnabled(true);
+              sample_POS.this.HOWMANYYOSIWHITE.setText("");
+              sample_POS.this.HOWMANYYOSIWHITE.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYYOSIWHITE.setEnabled(false);
+              sample_POS.this.HOWMANYYOSIWHITE.setText("0");
+            } 
+          }
+        });
+    chkcYOSIWHITE.setEnabled(false);
+    chkcYOSIWHITE.setFont(new Font("Tahoma", 3, 13));
+    chkcYOSIWHITE.setBounds(6, 240, 97, 23);
+    p1.add(chkcYOSIWHITE);
+    final JCheckBox chkcSISIG = new JCheckBox("SISIG");
+    chkcSISIG.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcSISIG.isSelected()) {
+              sample_POS.this.HOWMANYSISIG.setEnabled(true);
+              sample_POS.this.HOWMANYSISIG.setText("");
+              sample_POS.this.HOWMANYSISIG.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYSISIG.setEnabled(false);
+              sample_POS.this.HOWMANYSISIG.setText("0");
+            } 
+          }
+        });
+    chkcSISIG.setEnabled(false);
+    chkcSISIG.setFont(new Font("Tahoma", 3, 14));
+    chkcSISIG.setBounds(6, 294, 97, 23);
+    p1.add(chkcSISIG);
+    final JCheckBox chkcADOBO = new JCheckBox("ADOBO");
+    chkcADOBO.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcADOBO.isSelected()) {
+              sample_POS.this.HOWMANYADOBO.setEnabled(true);
+              sample_POS.this.HOWMANYADOBO.setText("");
+              sample_POS.this.HOWMANYADOBO.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYADOBO.setEnabled(false);
+              sample_POS.this.HOWMANYADOBO.setText("0");
+            } 
+          }
+        });
+    chkcADOBO.setEnabled(false);
+    chkcADOBO.setFont(new Font("Tahoma", 3, 14));
+    chkcADOBO.setBounds(6, 348, 97, 23);
+    p1.add(chkcADOBO);
+    final JCheckBox chkcBURGER = new JCheckBox("BURGER");
+    chkcBURGER.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcBURGER.isSelected()) {
+              sample_POS.this.HOWMANYBURGER.setEnabled(true);
+              sample_POS.this.HOWMANYBURGER.setText("");
+              sample_POS.this.HOWMANYBURGER.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYBURGER.setEnabled(false);
+              sample_POS.this.HOWMANYBURGER.setText("0");
+            } 
+          }
+        });
+    chkcBURGER.setEnabled(false);
+    chkcBURGER.setFont(new Font("Tahoma", 3, 14));
+    chkcBURGER.setBounds(6, 407, 97, 23);
+    p1.add(chkcBURGER);
+    final JCheckBox chkcEXEGG = new JCheckBox("EXTRA EGG");
+    chkcEXEGG.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcEXEGG.isSelected()) {
+              sample_POS.this.HOWMANYEXEGG.setEnabled(true);
+              sample_POS.this.HOWMANYEXEGG.setText("");
+              sample_POS.this.HOWMANYEXEGG.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYEXEGG.setEnabled(false);
+              sample_POS.this.HOWMANYEXEGG.setText("0");
+            } 
+          }
+        });
+    chkcEXEGG.setEnabled(false);
+    chkcEXEGG.setFont(new Font("Tahoma", 3, 13));
+    chkcEXEGG.setBounds(6, 464, 97, 23);
+    p1.add(chkcEXEGG);
+    final JCheckBox chkcEXSOUP = new JCheckBox("EXTRA SOUP");
+    chkcEXSOUP.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chkcEXSOUP.isSelected()) {
+              sample_POS.this.HOWMANYEXSOUP.setEnabled(true);
+              sample_POS.this.HOWMANYEXSOUP.setText("");
+              sample_POS.this.HOWMANYEXSOUP.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYEXSOUP.setEnabled(false);
+              sample_POS.this.HOWMANYEXSOUP.setText("0");
+            } 
+          }
+        });
+    chkcEXSOUP.setEnabled(false);
+    chkcEXSOUP.setFont(new Font("Tahoma", 3, 11));
+    chkcEXSOUP.setBounds(6, 530, 97, 23);
+    p1.add(chkcEXSOUP);
+    JPanel p2 = new JPanel();
+    panel_1.add(p2);
+    p2.setLayout((LayoutManager)null);
+    this.HOWMANYRH = new JTextField();
+    this.HOWMANYRH.setText("0");
+    this.HOWMANYRH.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYRH.setBounds(10, 26, 86, 20);
+    p2.add(this.HOWMANYRH);
+    this.HOWMANYRH.setColumns(10);
+    this.HOWMANYGIN = new JTextField();
+    this.HOWMANYGIN.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYGIN.setText("0");
+    this.HOWMANYGIN.setBounds(10, 81, 86, 20);
+    p2.add(this.HOWMANYGIN);
+    this.HOWMANYGIN.setColumns(10);
+    this.HOWMANYCOKE = new JTextField();
+    this.HOWMANYCOKE.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYCOKE.setText("0");
+    this.HOWMANYCOKE.setBounds(10, 137, 86, 20);
+    p2.add(this.HOWMANYCOKE);
+    this.HOWMANYCOKE.setColumns(10);
+    this.HOWMANYROYAL = new JTextField();
+    this.HOWMANYROYAL.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYROYAL.setText("0");
+    this.HOWMANYROYAL.setBounds(10, 190, 86, 20);
+    p2.add(this.HOWMANYROYAL);
+    this.HOWMANYROYAL.setColumns(10);
+    this.HOWMANYYOSIWHITE = new JTextField();
+    this.HOWMANYYOSIWHITE.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYYOSIWHITE.setText("0");
+    this.HOWMANYYOSIWHITE.setBounds(10, 242, 86, 20);
+    p2.add(this.HOWMANYYOSIWHITE);
+    this.HOWMANYYOSIWHITE.setColumns(10);
+    this.HOWMANYSISIG = new JTextField();
+    this.HOWMANYSISIG.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYSISIG.setText("0");
+    this.HOWMANYSISIG.setBounds(10, 295, 86, 20);
+    p2.add(this.HOWMANYSISIG);
+    this.HOWMANYSISIG.setColumns(10);
+    this.HOWMANYADOBO = new JTextField();
+    this.HOWMANYADOBO.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYADOBO.setText("0");
+    this.HOWMANYADOBO.setBounds(10, 346, 86, 20);
+    p2.add(this.HOWMANYADOBO);
+    this.HOWMANYADOBO.setColumns(10);
+    this.HOWMANYBURGER = new JTextField();
+    this.HOWMANYBURGER.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYBURGER.setText("0");
+    this.HOWMANYBURGER.setBounds(10, 408, 86, 20);
+    p2.add(this.HOWMANYBURGER);
+    this.HOWMANYBURGER.setColumns(10);
+    this.HOWMANYEXEGG = new JTextField();
+    this.HOWMANYEXEGG.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYEXEGG.setText("0");
+    this.HOWMANYEXEGG.setBounds(10, 470, 86, 20);
+    p2.add(this.HOWMANYEXEGG);
+    this.HOWMANYEXEGG.setColumns(10);
+    this.HOWMANYEXSOUP = new JTextField();
+    this.HOWMANYEXSOUP.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYEXSOUP.setText("0");
+    this.HOWMANYEXSOUP.setBounds(10, 528, 86, 20);
+    p2.add(this.HOWMANYEXSOUP);
+    this.HOWMANYEXSOUP.setColumns(10);
+    JLabel HOWMANYORDER = new JLabel("ORDER LIST");
+    HOWMANYORDER.setFont(new Font("Tahoma", 0, 15));
+    HOWMANYORDER.setHorizontalAlignment(0);
+    HOWMANYORDER.setBounds(0, 559, 110, 97);
+    p2.add(HOWMANYORDER);
+    JPanel p3 = new JPanel();
+    panel_1.add(p3);
+    p3.setLayout((LayoutManager)null);
+    JPanel panel_3 = new JPanel();
+    panel_3.setLayout((LayoutManager)null);
+    panel_3.setBounds(0, 0, 110, 656);
+    p3.add(panel_3);
+    final JCheckBox chckbxSml = new JCheckBox("SML");
+    chckbxSml.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxSml.isSelected()) {
+              sample_POS.this.HOWMANYSML.setEnabled(true);
+              sample_POS.this.HOWMANYSML.setText("");
+              sample_POS.this.HOWMANYSML.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYSML.setEnabled(false);
+              sample_POS.this.HOWMANYSML.setText("0");
+            } 
+          }
+        });
+    chckbxSml.setEnabled(false);
+    chckbxSml.setFont(new Font("Tahoma", 3, 13));
+    chckbxSml.setBounds(6, 25, 97, 23);
+    panel_3.add(chckbxSml);
+    final JCheckBox chckbxBlacklabel = new JCheckBox("Black L");
+    chckbxBlacklabel.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxBlacklabel.isSelected()) {
+              sample_POS.this.HOWMANYBLACKLABEL.setEnabled(true);
+              sample_POS.this.HOWMANYBLACKLABEL.setText("");
+              sample_POS.this.HOWMANYBLACKLABEL.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYBLACKLABEL.setEnabled(false);
+              sample_POS.this.HOWMANYBLACKLABEL.setText("0");
+            } 
+          }
+        });
+    chckbxBlacklabel.setEnabled(false);
+    chckbxBlacklabel.setFont(new Font("Tahoma", 3, 15));
+    chckbxBlacklabel.setBounds(6, 79, 97, 23);
+    panel_3.add(chckbxBlacklabel);
+    final JCheckBox chckbxSprite = new JCheckBox("SPRITE");
+    chckbxSprite.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxSprite.isSelected()) {
+              sample_POS.this.HOWMANYSPRITE.setEnabled(true);
+              sample_POS.this.HOWMANYSPRITE.setText("");
+              sample_POS.this.HOWMANYSPRITE.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYSPRITE.setEnabled(false);
+              sample_POS.this.HOWMANYSPRITE.setText("0");
+            } 
+          }
+        });
+    chckbxSprite.setEnabled(false);
+    chckbxSprite.setFont(new Font("Tahoma", 3, 15));
+    chckbxSprite.setBounds(6, 136, 97, 23);
+    panel_3.add(chckbxSprite);
+    final JCheckBox chckbxMarlRed = new JCheckBox("Marl Red");
+    chckbxMarlRed.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxMarlRed.isSelected()) {
+              sample_POS.this.HOWMANYMARLRED.setEnabled(true);
+              sample_POS.this.HOWMANYMARLRED.setText("");
+              sample_POS.this.HOWMANYMARLRED.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYMARLRED.setEnabled(false);
+              sample_POS.this.HOWMANYMARLRED.setText("0");
+            } 
+          }
+        });
+    chckbxMarlRed.setEnabled(false);
+    chckbxMarlRed.setFont(new Font("Tahoma", 3, 15));
+    chckbxMarlRed.setBounds(6, 188, 97, 23);
+    panel_3.add(chckbxMarlRed);
+    final JCheckBox chckbxMarlBlue = new JCheckBox("Marl Blue");
+    chckbxMarlBlue.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxMarlBlue.isSelected()) {
+              sample_POS.this.HOWMANYMARLBLUE.setEnabled(true);
+              sample_POS.this.HOWMANYMARLBLUE.setText("");
+              sample_POS.this.HOWMANYMARLBLUE.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYMARLBLUE.setEnabled(false);
+              sample_POS.this.HOWMANYMARLBLUE.setText("0");
+            } 
+          }
+        });
+    chckbxMarlBlue.setEnabled(false);
+    chckbxMarlBlue.setFont(new Font("Tahoma", 3, 13));
+    chckbxMarlBlue.setBounds(6, 240, 97, 23);
+    panel_3.add(chckbxMarlBlue);
+    final JCheckBox chckbxSinigang = new JCheckBox("SINIGANG");
+    chckbxSinigang.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxSinigang.isSelected()) {
+              sample_POS.this.HOWMANYSINIGANG.setEnabled(true);
+              sample_POS.this.HOWMANYSINIGANG.setText("");
+              sample_POS.this.HOWMANYSINIGANG.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYSINIGANG.setEnabled(false);
+              sample_POS.this.HOWMANYSINIGANG.setText("0");
+            } 
+          }
+        });
+    chckbxSinigang.setEnabled(false);
+    chckbxSinigang.setFont(new Font("Tahoma", 3, 12));
+    chckbxSinigang.setBounds(6, 294, 97, 23);
+    panel_3.add(chckbxSinigang);
+    final JCheckBox chckbxPorkChop = new JCheckBox("PORK CHOP");
+    chckbxPorkChop.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (chckbxPorkChop.isSelected()) {
+              sample_POS.this.HOWMANYPORKCHOP.setEnabled(true);
+              sample_POS.this.HOWMANYPORKCHOP.setText("");
+              sample_POS.this.HOWMANYPORKCHOP.requestFocus();
+            } else {
+              sample_POS.this.HOWMANYPORKCHOP.setEnabled(false);
+              sample_POS.this.HOWMANYPORKCHOP.setText("0");
+            } 
+          }
+        });
+    chckbxPorkChop.setEnabled(false);
+    chckbxPorkChop.setFont(new Font("Tahoma", 3, 12));
+    chckbxPorkChop.setBounds(6, 348, 97, 23);
+    panel_3.add(chckbxPorkChop);
+    JPanel p4 = new JPanel();
+    panel_1.add(p4);
+    p4.setLayout((LayoutManager)null);
+    JLabel label = new JLabel("ORDER LIST");
+    label.setHorizontalAlignment(0);
+    label.setFont(new Font("Tahoma", 0, 15));
+    label.setBounds(0, 559, 110, 97);
+    p4.add(label);
+    this.HOWMANYSML = new JTextField();
+    this.HOWMANYSML.setText("0");
+    this.HOWMANYSML.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYSML.setColumns(10);
+    this.HOWMANYSML.setBounds(10, 26, 86, 20);
+    p4.add(this.HOWMANYSML);
+    this.HOWMANYBLACKLABEL = new JTextField();
+    this.HOWMANYBLACKLABEL.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYBLACKLABEL.setText("0");
+    this.HOWMANYBLACKLABEL.setColumns(10);
+    this.HOWMANYBLACKLABEL.setBounds(10, 81, 86, 20);
+    p4.add(this.HOWMANYBLACKLABEL);
+    this.HOWMANYSPRITE = new JTextField();
+    this.HOWMANYSPRITE.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYSPRITE.setText("0");
+    this.HOWMANYSPRITE.setColumns(10);
+    this.HOWMANYSPRITE.setBounds(10, 137, 86, 20);
+    p4.add(this.HOWMANYSPRITE);
+    this.HOWMANYMARLRED = new JTextField();
+    this.HOWMANYMARLRED.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYMARLRED.setText("0");
+    this.HOWMANYMARLRED.setColumns(10);
+    this.HOWMANYMARLRED.setBounds(10, 190, 86, 20);
+    p4.add(this.HOWMANYMARLRED);
+    this.HOWMANYMARLBLUE = new JTextField();
+    this.HOWMANYMARLBLUE.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYMARLBLUE.setText("0");
+    this.HOWMANYMARLBLUE.setColumns(10);
+    this.HOWMANYMARLBLUE.setBounds(10, 242, 86, 20);
+    p4.add(this.HOWMANYMARLBLUE);
+    this.HOWMANYSINIGANG = new JTextField();
+    this.HOWMANYSINIGANG.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYSINIGANG.setText("0");
+    this.HOWMANYSINIGANG.setColumns(10);
+    this.HOWMANYSINIGANG.setBounds(10, 295, 86, 20);
+    p4.add(this.HOWMANYSINIGANG);
+    this.HOWMANYPORKCHOP = new JTextField();
+    this.HOWMANYPORKCHOP.setFont(new Font("Tahoma", 1, 12));
+    this.HOWMANYPORKCHOP.setText("0");
+    this.HOWMANYPORKCHOP.setColumns(10);
+    this.HOWMANYPORKCHOP.setBounds(10, 346, 86, 20);
+    p4.add(this.HOWMANYPORKCHOP);
+    JPanel panel_2 = new JPanel();
+    panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+    this.frmTambaykainan.getContentPane().add(panel_2);
+    panel_2.setLayout((LayoutManager)null);
+    JLabel lblNewLabel = new JLabel("TAX");
+    lblNewLabel.setFont(new Font("Tahoma", 1, 15));
+    lblNewLabel.setBounds(34, 43, 126, 14);
+    panel_2.add(lblNewLabel);
+    JLabel lblNewLabel_1 = new JLabel("SUBTOTAL");
+    lblNewLabel_1.setFont(new Font("Tahoma", 1, 15));
+    lblNewLabel_1.setBounds(34, 119, 126, 14);
+    panel_2.add(lblNewLabel_1);
+    JLabel lblNewLabel_2 = new JLabel("TOTAL");
+    lblNewLabel_2.setFont(new Font("Tahoma", 1, 15));
+    lblNewLabel_2.setBounds(34, 190, 126, 14);
+    panel_2.add(lblNewLabel_2);
+    this.TAX = new JTextField();
+    this.TAX.setEditable(false);
+    this.TAX.setEnabled(false);
+    this.TAX.setHorizontalAlignment(0);
+    this.TAX.setText("0.00");
+    this.TAX.setFont(new Font("Tahoma", 3, 15));
+    this.TAX.setBounds(150, 40, 247, 31);
+    panel_2.add(this.TAX);
+    this.TAX.setColumns(10);
+    this.SUBTOTAL = new JTextField();
+    this.SUBTOTAL.setEditable(false);
+    this.SUBTOTAL.setEnabled(false);
+    this.SUBTOTAL.setHorizontalAlignment(0);
+    this.SUBTOTAL.setText("0.00");
+    this.SUBTOTAL.setFont(new Font("Tahoma", 3, 15));
+    this.SUBTOTAL.setBounds(150, 116, 247, 31);
+    panel_2.add(this.SUBTOTAL);
+    this.SUBTOTAL.setColumns(10);
+    this.TT = new JTextField();
+    this.TT.setEnabled(false);
+    this.TT.setEditable(false);
+    this.TT.setHorizontalAlignment(0);
+    this.TT.setText("0.00");
+    this.TT.setFont(new Font("Tahoma", 3, 15));
+    this.TT.setBounds(150, 187, 247, 31);
+    panel_2.add(this.TT);
+    this.TT.setColumns(10);
+    final JTextArea textArea = new JTextArea();
+    textArea.setFont(new Font("MS UI Gothic", 0, 16));
+    textArea.setEnabled(false);
+    textArea.setEditable(false);
+    textArea.setBounds(34, 247, 385, 311);
+    panel_2.add(textArea);
+    final JButton TOTALZ = new JButton("TOTAL");
+    TOTALZ.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            sample_POS.this.itemcost[0] = Double.parseDouble(sample_POS.this.HOWMANYRH.getText()) * 45.0D;
+            sample_POS.this.itemcost[1] = Double.parseDouble(sample_POS.this.HOWMANYGIN.getText()) * 40.0D;
+            sample_POS.this.itemcost[2] = Double.parseDouble(sample_POS.this.HOWMANYCOKE.getText()) * 20.0D;
+            sample_POS.this.itemcost[3] = Double.parseDouble(sample_POS.this.HOWMANYROYAL.getText()) * 20.0D;
+            sample_POS.this.itemcost[4] = Double.parseDouble(sample_POS.this.HOWMANYYOSIWHITE.getText()) * 8.0D;
+            sample_POS.this.itemcost[5] = Double.parseDouble(sample_POS.this.HOWMANYSISIG.getText()) * 105.0D;
+            sample_POS.this.itemcost[6] = Double.parseDouble(sample_POS.this.HOWMANYADOBO.getText()) * 75.0D;
+            sample_POS.this.itemcost[7] = Double.parseDouble(sample_POS.this.HOWMANYBURGER.getText()) * 55.0D;
+            sample_POS.this.itemcost[8] = Double.parseDouble(sample_POS.this.HOWMANYEXEGG.getText()) * 10.0D;
+            sample_POS.this.itemcost[9] = Double.parseDouble(sample_POS.this.HOWMANYEXSOUP.getText()) * 10.0D;
+            sample_POS.this.itemcost[10] = Double.parseDouble(sample_POS.this.HOWMANYSML.getText()) * 40.0D;
+            sample_POS.this.itemcost[11] = Double.parseDouble(sample_POS.this.HOWMANYBLACKLABEL.getText()) * 1005.0D;
+            sample_POS.this.itemcost[12] = Double.parseDouble(sample_POS.this.HOWMANYSPRITE.getText()) * 20.0D;
+            sample_POS.this.itemcost[13] = Double.parseDouble(sample_POS.this.HOWMANYMARLRED.getText()) * 8.0D;
+            sample_POS.this.itemcost[14] = Double.parseDouble(sample_POS.this.HOWMANYMARLBLUE.getText()) * 8.0D;
+            sample_POS.this.itemcost[15] = Double.parseDouble(sample_POS.this.HOWMANYSINIGANG.getText()) * 105.0D;
+            sample_POS.this.itemcost[16] = Double.parseDouble(sample_POS.this.HOWMANYPORKCHOP.getText()) * 95.0D;
+            sample_POS.this.itemcost[17] = sample_POS.this.itemcost[0] + sample_POS.this.itemcost[1] + sample_POS.this.itemcost[2] + sample_POS.this.itemcost[3] + sample_POS.this.itemcost[4] + sample_POS.this.itemcost[5] + sample_POS.this.itemcost[6];
+            sample_POS.this.itemcost[18] = sample_POS.this.itemcost[7] + sample_POS.this.itemcost[8] + sample_POS.this.itemcost[9] + sample_POS.this.itemcost[10] + sample_POS.this.itemcost[11] + sample_POS.this.itemcost[12] + sample_POS.this.itemcost[13];
+            sample_POS.this.itemcost[19] = sample_POS.this.itemcost[14] + sample_POS.this.itemcost[15] + sample_POS.this.itemcost[16];
+            sample_POS.this.itemcost[20] = sample_POS.this.itemcost[17] + sample_POS.this.itemcost[18] + sample_POS.this.itemcost[19];
+            sample_POS.this.ETAX = String.format("P %.2f", new Object[] { Double.valueOf(this.this$0.itemcost[20] / 100.0D) });
+            sample_POS.this.ESUBTOTAL = String.format("P %.2f", new Object[] { Double.valueOf(this.this$0.itemcost[20]) });
+            sample_POS.this.ETOTAL = String.format("P %.2f", new Object[] { Double.valueOf(this.this$0.itemcost[20] + this.this$0.itemcost[20] / 100.0D) });
+            sample_POS.this.TAX.setText(sample_POS.this.ETAX);
+            sample_POS.this.SUBTOTAL.setText(sample_POS.this.ESUBTOTAL);
+            sample_POS.this.TT.setText(sample_POS.this.ETOTAL);
+            textArea.setEnabled(true);
+            int refs = 1000 + (int)(Math.random() * 5123.0D);
+            Calendar timer = Calendar.getInstance();
+            timer.getTime();
+            SimpleDateFormat tTime = new SimpleDateFormat("hh : mm : ss");
+            tTime.format(timer.getTime());
+            SimpleDateFormat tDate = new SimpleDateFormat("MMM : dd : YYYY");
+            tDate.format(timer.getTime());
+            textArea.append("\t Welcome to TAMBAYKAINAN\nReference: \t\t" + refs + 
+                " \n=============================================\t " + 
+                
+                "\n=============================================\t" + 
+                "\nTax: \t\t\t" + sample_POS.this.ETAX + 
+                "\nSub: \t\t\t" + sample_POS.this.ESUBTOTAL + 
+                "\nTotal: \t\t\t" + sample_POS.this.ETOTAL + 
+                "\n=============================================\t" + 
+                "\nDate: " + tDate.format(timer.getTime()) + 
+                "\tTime: " + tTime.format(timer.getTime()) + 
+                "\n\nThank You For Coming at TAMBAYKAINAN\n" + 
+                "\n NAME:  " + sample_POS.this.textNAME.getText());
+            if (e.getSource() == TOTALZ) {
+              sample_POS.this.NAME = "";
+              sample_POS.this.ORDERS = "";
+              sample_POS.this.NAME = sample_POS.this.textNAME.getText().trim();
+              sample_POS.this.ORDERS = sample_POS.this.ETOTAL.trim();
+              sample_POS.summery = "COST:  " + sample_POS.this.ORDERS + 
+                sample_POS.this.itemcost[20];
+              String Data = sample_POS.summery;
+              try {
+                BufferedWriter reader = new BufferedWriter(new FileWriter(new File("C:\\Users\\pc amsel\\Desktop\\ORDERS.txt"), true));
+                reader.write(Data);
+                reader.newLine();
+                reader.close();
+                JOptionPane.showMessageDialog(sample_POS.this.frmTambaykainan, "ORDER COMPLETE ");
+              } catch (IOException E) {
+                System.out.println("ERROE" + E);
+              } 
+            } 
+          }
+        });
+    TOTALZ.setBounds(44, 580, 89, 43);
+    panel_2.add(TOTALZ);
+    JButton btnNewButton_1 = new JButton("RESET");
+    btnNewButton_1.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            sample_POS.this.textNAME.setText("");
+            textArea.setText("");
+            textArea.setEnabled(false);
+            sample_POS.this.TT.setText("0.00");
+            sample_POS.this.TAX.setText("0.00");
+            sample_POS.this.SUBTOTAL.setText("0.00");
+            sample_POS.this.TT.setEnabled(false);
+            sample_POS.this.TAX.setEnabled(false);
+            sample_POS.this.SUBTOTAL.setEnabled(false);
+            sample_POS.this.HOWMANYRH.setText("0");
+            sample_POS.this.HOWMANYGIN.setText("0");
+            sample_POS.this.HOWMANYCOKE.setText("0");
+            sample_POS.this.HOWMANYROYAL.setText("0");
+            sample_POS.this.HOWMANYYOSIWHITE.setText("0");
+            sample_POS.this.HOWMANYSISIG.setText("0");
+            sample_POS.this.HOWMANYADOBO.setText("0");
+            sample_POS.this.HOWMANYBURGER.setText("0");
+            sample_POS.this.HOWMANYEXEGG.setText("0");
+            sample_POS.this.HOWMANYEXSOUP.setText("0");
+            sample_POS.this.HOWMANYSML.setText("0");
+            sample_POS.this.HOWMANYBLACKLABEL.setText("0");
+            sample_POS.this.HOWMANYSPRITE.setText("0");
+            sample_POS.this.HOWMANYMARLRED.setText("0");
+            sample_POS.this.HOWMANYMARLBLUE.setText("0");
+            sample_POS.this.HOWMANYSINIGANG.setText("0");
+            sample_POS.this.HOWMANYPORKCHOP.setText("0");
+            sample_POS.this.HOWMANYRH.setEnabled(false);
+            sample_POS.this.HOWMANYGIN.setEnabled(false);
+            sample_POS.this.HOWMANYCOKE.setEnabled(false);
+            sample_POS.this.HOWMANYROYAL.setEnabled(false);
+            sample_POS.this.HOWMANYYOSIWHITE.setEnabled(false);
+            sample_POS.this.HOWMANYSISIG.setEnabled(false);
+            sample_POS.this.HOWMANYADOBO.setEnabled(false);
+            sample_POS.this.HOWMANYBURGER.setEnabled(false);
+            sample_POS.this.HOWMANYEXEGG.setEnabled(false);
+            sample_POS.this.HOWMANYEXSOUP.setEnabled(false);
+            sample_POS.this.HOWMANYSML.setEnabled(false);
+            sample_POS.this.HOWMANYBLACKLABEL.setEnabled(false);
+            sample_POS.this.HOWMANYSPRITE.setEnabled(false);
+            sample_POS.this.HOWMANYMARLRED.setEnabled(false);
+            sample_POS.this.HOWMANYMARLBLUE.setEnabled(false);
+            sample_POS.this.HOWMANYSINIGANG.setEnabled(false);
+            sample_POS.this.HOWMANYPORKCHOP.setEnabled(false);
+            chkcRH.setEnabled(false);
+            chkcGIN.setEnabled(false);
+            chkcCOKE.setEnabled(false);
+            chkcROYAL.setEnabled(false);
+            chkcYOSIWHITE.setEnabled(false);
+            chkcSISIG.setEnabled(false);
+            chkcADOBO.setEnabled(false);
+            chkcBURGER.setEnabled(false);
+            chkcEXEGG.setEnabled(false);
+            chkcEXSOUP.setEnabled(false);
+            chckbxSml.setEnabled(false);
+            chckbxBlacklabel.setEnabled(false);
+            chckbxSprite.setEnabled(false);
+            chckbxMarlRed.setEnabled(false);
+            chckbxMarlBlue.setEnabled(false);
+            chckbxSinigang.setEnabled(false);
+            chckbxPorkChop.setEnabled(false);
+            chkcRH.setSelected(false);
+            chkcGIN.setSelected(false);
+            chkcCOKE.setSelected(false);
+            chkcROYAL.setSelected(false);
+            chkcYOSIWHITE.setSelected(false);
+            chkcSISIG.setSelected(false);
+            chkcADOBO.setSelected(false);
+            chkcBURGER.setSelected(false);
+            chkcEXEGG.setSelected(false);
+            chkcEXSOUP.setSelected(false);
+            chckbxSml.setSelected(false);
+            chckbxBlacklabel.setSelected(false);
+            chckbxSprite.setSelected(false);
+            chckbxMarlRed.setSelected(false);
+            chckbxMarlBlue.setSelected(false);
+            chckbxSinigang.setSelected(false);
+            chckbxPorkChop.setSelected(false);
+          }
+        });
+    btnNewButton_1.setBounds(195, 580, 89, 43);
+    panel_2.add(btnNewButton_1);
+    final JButton PRINT = new JButton("PRINT");
+    PRINT.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == PRINT) {
+              JFileChooser chooser = new JFileChooser("C:\\Users\\user\\Desktop\\");
+              int xd = chooser.showOpenDialog(null);
+              if (xd == 0) {
+                File file = chooser.getSelectedFile();
+                try {
+                  Desktop.getDesktop().open(file);
+                } catch (IOException EE) {
+                  System.out.println("ERROR" + EE);
+                } 
+              } 
+            } 
+          }
+        });
+    PRINT.setBounds(330, 580, 89, 43);
+    panel_2.add(PRINT);
+    JPanel panel = new JPanel();
+    panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+    this.frmTambaykainan.getContentPane().add(panel);
+    JButton BTNRH = new JButton("RED HORSE");
+    BTNRH.setBounds(3, 7, 220, 63);
+    BTNRH.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcRH.setEnabled(true);
+          }
+        });
+    panel.setLayout((LayoutManager)null);
+    BTNRH.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNRH);
+    JButton BTNSML = new JButton("SAN MIG LIGHT");
+    BTNSML.setBounds(225, 7, 220, 63);
+    BTNSML.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxSml.setEnabled(true);
+          }
+        });
+    BTNSML.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNSML);
+    JButton BTNGIN = new JButton("GIN");
+    BTNGIN.setBounds(3, 72, 220, 63);
+    BTNGIN.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcGIN.setEnabled(true);
+          }
+        });
+    BTNGIN.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNGIN);
+    JButton BTNBLACK = new JButton("BLACK LABEL");
+    BTNBLACK.setBounds(225, 72, 220, 63);
+    BTNBLACK.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxBlacklabel.setEnabled(true);
+          }
+        });
+    BTNBLACK.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNBLACK);
+    JButton BTNCOKE = new JButton("COKE");
+    BTNCOKE.setBounds(3, 137, 220, 63);
+    BTNCOKE.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcCOKE.setEnabled(true);
+          }
+        });
+    BTNCOKE.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNCOKE);
+    JButton BTNSPRITE = new JButton("SPRITE");
+    BTNSPRITE.setBounds(225, 137, 220, 63);
+    BTNSPRITE.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxSprite.setEnabled(true);
+          }
+        });
+    BTNSPRITE.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNSPRITE);
+    JButton BTNROYAL = new JButton("ROYAL");
+    BTNROYAL.setBounds(3, 202, 220, 63);
+    BTNROYAL.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcROYAL.setEnabled(true);
+          }
+        });
+    BTNROYAL.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNROYAL);
+    JButton BTNYOSIRED = new JButton("MARLBORO RED");
+    BTNYOSIRED.setBounds(225, 202, 220, 63);
+    BTNYOSIRED.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxMarlRed.setEnabled(true);
+          }
+        });
+    BTNYOSIRED.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNYOSIRED);
+    JButton BTNYOSIWHITE = new JButton("MARLBORO LIGHTS");
+    BTNYOSIWHITE.setBounds(3, 267, 220, 63);
+    BTNYOSIWHITE.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcYOSIWHITE.setEnabled(true);
+          }
+        });
+    BTNYOSIWHITE.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNYOSIWHITE);
+    JButton BTNYOSIGAY = new JButton("MARLBORO BLUE");
+    BTNYOSIGAY.setBounds(225, 267, 220, 63);
+    BTNYOSIGAY.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxMarlBlue.setEnabled(true);
+          }
+        });
+    BTNYOSIGAY.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNYOSIGAY);
+    JButton BTNSISIG = new JButton("SISIG");
+    BTNSISIG.setBounds(3, 332, 220, 63);
+    BTNSISIG.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcSISIG.setEnabled(true);
+          }
+        });
+    BTNSISIG.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNSISIG);
+    JButton BTNSINIGANG = new JButton("SINIGANG");
+    BTNSINIGANG.setBounds(225, 332, 220, 63);
+    BTNSINIGANG.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxSinigang.setEnabled(true);
+          }
+        });
+    BTNSINIGANG.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNSINIGANG);
+    JButton BTNADOBO = new JButton("ADOBO");
+    BTNADOBO.setBounds(3, 397, 220, 63);
+    BTNADOBO.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcADOBO.setEnabled(true);
+          }
+        });
+    BTNADOBO.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNADOBO);
+    JButton BTNPORKCHOP = new JButton("PORK CHOP");
+    BTNPORKCHOP.setBounds(225, 397, 220, 63);
+    BTNPORKCHOP.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chckbxPorkChop.setEnabled(true);
+          }
+        });
+    BTNPORKCHOP.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNPORKCHOP);
+    JButton BTNBURGER = new JButton("BURGER");
+    BTNBURGER.setBounds(3, 462, 220, 63);
+    BTNBURGER.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcBURGER.setEnabled(true);
+          }
+        });
+    BTNBURGER.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNBURGER);
+    JButton BTNEXEGG = new JButton("EXTRA EGG");
+    BTNEXEGG.setBounds(225, 462, 220, 63);
+    BTNEXEGG.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcEXEGG.setEnabled(true);
+          }
+        });
+    BTNEXEGG.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNEXEGG);
+    JButton BTNEXSOUP = new JButton("EXTRA SOUP");
+    BTNEXSOUP.setBounds(225, 527, 220, 63);
+    BTNEXSOUP.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            chkcEXSOUP.setEnabled(true);
+          }
+        });
+    this.textNAME = new JTextField();
+    this.textNAME.setHorizontalAlignment(0);
+    this.textNAME.setBounds(113, 601, 166, 63);
+    panel.add(this.textNAME);
+    this.textNAME.setColumns(10);
+    BTNEXSOUP.setFont(new Font("Arial", 3, 18));
+    panel.add(BTNEXSOUP);
+    JLabel lblNewLabel_3 = new JLabel("NAME : ");
+    lblNewLabel_3.setFont(new Font("Stencil", 0, 24));
+    lblNewLabel_3.setBounds(10, 605, 93, 46);
+    panel.add(lblNewLabel_3);
+    JLabel lblNewLabel_4 = new JLabel("PRICE CLICK HERE");
+    lblNewLabel_4.addMouseListener(new MouseAdapter() {
+          public void mouseClicked(MouseEvent e) {
+            price_POS info = new price_POS();
+            price_POS.main(null);
+          }
+        });
+    lblNewLabel_4.setFont(new Font("Times New Roman", 0, 15));
+    lblNewLabel_4.setHorizontalAlignment(0);
+    lblNewLabel_4.setBounds(13, 536, 202, 54);
+    panel.add(lblNewLabel_4);
+  }
+}
